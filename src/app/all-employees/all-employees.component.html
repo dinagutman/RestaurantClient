@@ -1,0 +1,51 @@
+<p-table #dt [value]="allEmployees" dataKey="id" [rows]="10"
+    styleClass="p-datatable-customers" [filterDelay]="0" [rowHover]="true"
+    [globalFilterFields]="['employeeFirstName','country.name','representative.name','status']">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Employee ID</th>
+        <th>Employee code</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Starting date</th>
+        <th>Base salary</th>
+        <th>Salary tip</th>
+        <th>Delete employee</th>
+      </tr>
+      <tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-allEmployees>
+      <tr>
+        <td>
+            {{allEmployees.employeeId}}
+          </td>
+         <td>
+          {{allEmployees.employeeCode}}
+        </td> 
+        <td>
+          {{allEmployees.employeeFirstName}}
+        </td>
+        <td>
+          {{allEmployees.employeeLastName}}
+        </td>
+
+        <td>
+          {{allEmployees.startingDate|date: 'dd/MM/yyyy'}}
+        </td>
+        <td>
+          {{allEmployees.baseSalary}}
+        </td>
+        <td>
+          {{allEmployees.salaryTip}}
+        </td>
+        <td>
+           <button style="border: azure;"><i class="pi pi-trash" (click)="DeleteEmployee(allEmployees.employeeCode,allEmployees.employeeFirstName+allEmployees.employeeLastName)" ></i></button>
+          </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">No working hours found.</td>
+      </tr>
+    </ng-template>
+  </p-table>

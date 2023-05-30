@@ -1,0 +1,135 @@
+<div  style="background-color: black;color: goldenrod;">
+  <span style="font-family: monospace;">{{myDate | date:'HH:mm'}} <br> {{date  | date: 'dd/MM/yyyy'}} </span>
+  <div class="d-flex justify-content-end">
+  <a class="myButton"  [routerLink]="['/online-map']" routerLinkActive="activeClass"
+    style="font-size: 18px;font-family: monospace;margin-right: 10px; text-decoration:none;">online-map</a></div>
+<p style="text-align: center;font-size: 24px;"> <b >Payment</b></p><br></div>
+<br><br><br>
+<h1 style="margin-left: 37.6%;font-family: monospace;font-size: 18px;"><b>Order of Table: {{tableCode}}
+    <br> Waiter: {{employeeName | titlecase}}</b></h1>
+<table mdbTable style="width: 25%;margin-left: 37.5%;border: solid black 1.5px;">
+  <thead class="black white-text">
+    <tr>
+      <th style="width: 33.3%;text-align: center;font-size: 17.5px;font-family: monospace;"
+        *ngFor="let head of headElements" scope="col">{{head}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let o of orderDetailsList" style="font-family: monospace; font-size: 16px;">
+      <td style="width: 33%;text-align: center;">{{o.mealName}}</td>
+      <td style="width: 34%;text-align: center;">{{o.servingAmount}}</td>
+      <td style="width: 33%;text-align: center;">{{o.mealPrice | currency:'ILS':true}} X {{o.servingAmount}}</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<p style="text-align: center;margin-left: 18%;font-size: 15px;">
+  <u>Total Price : {{totalPrice  | currency:'ILS':true}} </u></p>
+<br><br>
+<h1 style="margin-left: 37.6%;font-family: monospace;font-size: 18px;"><b>Payment options</b></h1>
+<table class="table table-bordered" style="width: 25%;margin-left: 37.5%;">
+  <thead>
+    <tr>
+      <th>
+        <div class="custom-control custom-checkbox">
+          <input (change)="onCreditCardChange('payPal')" type="radio" name="1" />
+          <span style="font-family: monospace;font-size: 16px;"> PayPal</span>
+        </div>
+      </th>
+      <td width="31%"><img src="assets/payPal.jpg" alt="payPal" style="width:80px ;height: 50px; margin-left: 20%;">
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        <div class="custom-control custom-checkbox">
+          <input (change)="onCreditCardChange('visa')" type="radio" name="1" />
+          <span style="font-family: monospace;font-size: 16px;"> Visa</span>
+        </div>
+      </th>
+      <td><img src="assets/visa.PNG" alt="Visa" class="allImg"></td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <div class="custom-control custom-checkbox">
+          <input (change)="onCreditCardChange('masterCard')" type="radio" name="1" />
+          <span style="font-family: monospace;font-size: 16px;"> MasterCard</span>
+        </div>
+      </th>
+      <td><img src="assets/masterCard.jpg" alt="Mastercard" class="allImg"></td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <div class="custom-control custom-checkbox">
+          <input id="isracart" (change)="onCreditCardChange('isracart')" type="radio" name="1" />
+          <span style="font-family: monospace;font-size: 16px;"> Isracart</span>
+        </div>
+      </th>
+      <td><img src="assets/Isracart.png" alt="Isracart" class="allImg"></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="margin-left: 39.5%; font-family: monospace;font-size: 16px;">
+  <input type="radio" (click)="cash();onSubmitPayment()" name="1">
+  <label style="margin-left: 0.7%;">Pay by cash</label>
+</div>
+<br>
+<button style="margin-left: 47%;" type="button" mdbBtn class="btnPayment" rounded="true" data-toggle="modal"
+  data-target="#basicExample" (click)="frame.show();clearPaymentForm()" mdbWavesEffect
+  [disabled]="!isSelectedCreditCard">Continue</button>
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Payment details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <span class="p-float-label">
+            <img [src]="imgSrc" alt="Credit card number"
+              style="width: 45px;height: 36px;margin-left: -7%;margin-top: 2%;">
+            <p-inputMask style="margin-top: 2%;margin-left: 2%;font-family: monospace !important;"
+              id="float-input-number" mask="9999-9999-9999-9999" [(ngModel)]="creditCard.creditCardNumber"
+              [ngModelOptions]="{standalone: true}" (change)="onFormComplete()"></p-inputMask>
+            <label style="margin-left: 2%;font-family: monospace;" for="float-input-number">*Credit card number</label>
+          </span>
+          <mdb-icon style="margin-left: 55%;margin-top:1.5%" fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input style="width: 170px;margin-left: 62%;margin-top: -9%;font-family: monospace;" #cardHolderName
+            type="text" id="holderName" [appOnlyLetters]="cardHolderName" mdbTooltip="First name and then last name"
+            placement="bottom" class="form-control" mdbInput [(ngModel)]="creditCard.cardHoldersName"
+            [ngModelOptions]="{standalone: true}" (change)="onFormComplete()">
+          <label style="margin-left: 62%; margin-top: 3%;font-family: monospace;" for="holderName">*Card holder's
+            name‏</label>
+        </div>
+        <div style="margin-left: 3%;" class="md-form mb-4">
+          <p style="color: #757575;font-family: monospace;">*Credit Card Validity</p>
+          <select [(ngModel)]="creditCard.validityMonth" [ngModelOptions]="{standalone: true}" required
+            (change)="onFormComplete()" style="margin-left: 3%;font-family: monospace;">
+            <option *ngFor="let m of MonthesInNumber">{{m}}</option>
+          </select> /
+          <select [(ngModel)]="creditCard.validityYear" [ngModelOptions]="{standalone: true}" required
+            (change)="onFormComplete()" style="font-family: monospace;">
+            <option *ngFor="let y of YearsInNumber">{{y}}</option>
+          </select>
+          <img src="assets/back.jpg" alt="CVV" style="width: 50px;height: 38px;margin-left: 26%;">
+          <input id="cvv" mdbInput #CVV appNumOfDigits [type]=CVV [length]=3 type="number" [min]="0" value="100"
+            oninput="validity.valid||(value='')" [max]="999" [(ngModel)]="creditCard.cvv"
+            [ngModelOptions]="{standalone: true}" (change)="onFormComplete()" style="font-family: monospace;">
+          <label style="margin-left: 65.3%;margin-top: 6%;font-family: monospace;" for="cvv">*CVV‏</label>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button [disabled]="!isFormComplete" mdbBtn class="btnPayment" mdbWavesEffect
+          (click)="frame.hide();onSubmitPayment()">Pay Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+<p-toast position="bottom-right" key="br"></p-toast>

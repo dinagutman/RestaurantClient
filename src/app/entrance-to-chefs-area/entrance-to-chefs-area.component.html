@@ -1,0 +1,37 @@
+<div *ngIf="IsChef">
+<div style="background-color: black;color: goldenrod;">
+  <span style="font-family: monospace;">{{myDate | date:'HH:mm'}} <br> {{date  | date: 'dd/MM/yyyy'}} </span>
+  <b
+    style="font-size: 20px;text-align: center; font-size: 20px; position: absolute;left: 50%;transform: translateX(-50%);font-weight: 500;">{{dateTimeWord| addGoodTime}},{{employeeName | titlecase }}</b>
+ <div class="d-flex justify-content-end">
+    <a (click)="exit()" [routerLink]="['/']"
+    style="font-size: 18px;margin-right: 5px; font-family: monospace; color: goldenrod;display: flexbox;position: absolute;display: inline-block;transform: translateX(-1%); right: 2.7%;">Exit</a>
+  <i class="pi pi-sign-out"
+    style="font-size: 1.1rem;margin-right: 3px; display: flexbox; position: absolute; display: inline-block;transform: translateX(-1%);right: 1.4%;"></i>
+  <br><br></div>
+</div>
+<br><br>
+<button (click)="showNewMeal()" style=" margin-left: 45% !important;font-family: monospace; font-size: 20px;" type="button" mdbBtn
+  class="btnSubmit" mdbWavesEffect>Show new meal </button>
+<br><br>
+<table *ngIf="arrayMealsOfOrder.length" mdbTable style="width: 25%;margin-left: 38%;border: solid black 1.5px;">
+  <thead class="black white-text">
+    <tr>
+      <th style="width: 33.3%;text-align: center;font-size: 17.5px;font-family: monospace;"
+        *ngFor="let head of headElements" scope="col">{{head}}</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let o of arrayMealsOfOrder" style="font-family: monospace; font-size: 16px;">
+      <td style="width: 33%;text-align: center;">{{o.orderCode}}</td>
+      <td style="width: 34%;text-align: center;">{{o.mealName}}</td>
+      <td style="width: 33%;text-align: center;"> {{o.servingAmount-o.howMuchMealCreated}}</td>
+      <td><button (click)="updateTableStatus()" style="background-color: black;color: white;" >Ready order</button></td>
+    </tr>
+  </tbody>
+</table>
+<p-toast></p-toast>
+<p-toast position="bottom-center" key="bc"></p-toast>
+</div>
+<div *ngIf="IsChef === false" style="text-align: center; padding: 5%;">You Have not login as Chef.</div>

@@ -1,0 +1,12 @@
+.btnSubmit {
+  font-family: monospace;
+  font-size: 18px;
+  background: black !important;
+  color: #fff !important;
+}
+
+.btnSubmit:hover, .btnSubmit:focus {
+  font-family: monospace;
+  font-size: 19px;
+  background: goldenrod !important;
+}

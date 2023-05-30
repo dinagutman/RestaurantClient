@@ -1,0 +1,26 @@
+.btnSubmit {
+  font-family: monospace;
+  font-size: 24px;
+  background: black !important;
+  color: #fff !important;
+}
+
+.btnSubmit:hover, .btnSubmit:focus {
+  font-family: monospace;
+  font-size: 25px;
+  background: goldenrod !important;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:focus:not([readonly]) {
+  box-shadow: 0 1px 0 0 black !important;
+  border-bottom: 1px solid black !important;
+}

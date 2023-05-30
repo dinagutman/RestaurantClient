@@ -1,0 +1,135 @@
+.md-form label {
+  position: initial !important;
+  margin-left: 2% !important;
+  color: black !important;
+}
+
+.modal-content {
+  margin-top: 10rem !important;
+}
+
+.modal-dialog .modal-content {
+  background: beige !important;
+}
+
+.md-form label {
+  font-size: 20px !important;
+}
+
+ .allTables {
+  max-width: 200px;
+  padding: 16px;
+  float: left;
+  border: 2px black solid;
+  border-radius: 6px;
+  width: 150px;
+  height: 90px;
+} 
+
+/* #table604, #table606, #table611, #table613 {
+  margin-top: -3%;
+  margin-left: 7%;
+}
+
+#table605, #table607, #table612, #table614 {
+  margin-left: -3;
+  margin-top: 7%;
+}
+
+#table615 {
+  margin-left: 26%;
+  margin-top: 6%;
+}
+
+#table616, #table620 {
+  margin-left: 15%;
+  margin-top: 6%;
+}
+
+#table618 {
+  margin-left: -55%;
+  margin-top: 6%;
+}  */
+
+#statusInfo {
+  border: 3px goldenrod double;
+  max-width: 200px;
+  padding: 16px;
+  margin-left: 89%;
+  border-radius: 10%;
+}
+.md-form label {
+  position: initial !important;
+  margin-left: 2% !important;
+  color: black !important;
+}
+
+.modal-content {
+  margin-top: 10rem !important;
+}
+
+.modal-dialog .modal-content {
+  background: beige !important;
+}
+
+.md-form label {
+  font-size: 20px !important;
+}
+
+.allTables {
+  max-width: 300px;
+  padding: 16px;
+  float: left;
+  border: 2px black solid;
+  border-radius: 6px;
+  width: 150px;
+  height: 100px;
+
+}
+.tables{
+    overflow-y: auto;
+    margin-top: -8%;
+    display: inline-block;
+    flex-direction: row;
+    justify-content: space-around;
+}
+fieldset{
+  margin-left: 8.9%;
+  margin-top: 3%;
+}
+
+/* #table604, #table606, #table611, #table613 ,#table1621{
+  margin-top: -3%;
+  margin-left: 7%;
+}
+
+#table605, #table607, #table612, #table614 ,#table1621{
+  margin-left: -3;
+  margin-top: 7%;
+}
+
+#table615 {
+  margin-left: 26%;
+  margin-top: 6%;
+}
+
+#table616, #table620,#table1621 {
+  margin-left: 15%;
+  margin-top: 6%;
+}
+
+#table618 {
+  margin-left: -55%;
+  margin-top: 6%;
+}
+ */
+#statusInfo {
+  border: 3px goldenrod double;
+  max-width: 200px;
+  padding: 16px;
+  margin-left: 89%;
+  border-radius: 10%;
+}
+
+
+

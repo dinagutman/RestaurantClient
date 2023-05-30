@@ -1,0 +1,13 @@
+.btnPayment {
+  font-family: monospace;
+  font-size: 18px;
+  background: black !important;
+  color: #fff !important;
+}
+
+.btnPayment:hover, .btnPayment:focus {
+  font-family: monospace;
+  font-size: 19px;
+  background: goldenrod !important;
+}
+

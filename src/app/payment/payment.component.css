@@ -1,0 +1,53 @@
+/* Hide Input Number Arrows */
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.panel-group .panel {
+  align-items: center;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.p-float-label {
+  display: flex;
+  position: relative;
+}
+
+.allImg {
+  width: 90px !important;
+  height: 50px !important;
+  margin-left: 10%;
+}
+
+.creditCardsTypes {
+  font-family: monospace;
+  font-size: 18px;
+}
+
+.custom-control-label {
+  margin-bottom: 10% !important;
+}
+
+.btnPayment {
+  font-family: monospace;
+  font-size: 18px;
+  background: black !important;
+  color: #fff !important;
+}
+
+.btnPayment:hover, .btnPayment:focus {
+  font-family: monospace;
+  font-size: 19px;
+  background: goldenrod !important;
+}
+
+.modal-dialog .modal-content {
+  margin-top: 10rem !important;
+}

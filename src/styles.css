@@ -1,0 +1,122 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+
+.p-carousel-vertical .p-carousel-container{
+  margin-left: 7% !important;
+  margin-top: 5% !important;
+}
+.p-datatable .p-datatable-thead>tr>th {
+  background: beige !important;
+}
+
+.p-carousel .p-carousel-indicators {
+display: none !important;
+}
+
+.fa-plus:before {
+  font-size: 1.5rem !important;
+}
+
+.btn .fab, .btn .far, .btn .fas {
+  font-size: 2.5rem !important;
+}
+
+.p-dialog .p-dialog-header .p-dialog-title {
+  font-size: 1.5rem !important;
+}
+
+.p-inputtext {
+  font-family: monospace !important;
+}
+
+.mat-h4, .mat-subheading-1, .mat-typography h4 {
+  font-size: 22px !important;
+  font-family: monospace !important;
+  color: goldenrod !important;
+}
+
+.modal-dialog .modal-content .modal-header {
+  background-color: black !important;
+}
+
+.custom-control {
+  margin-bottom: 7% !important;
+}
+
+.p-dialog.p-confirm-dialog .p-confirm-dialog-message {
+  font-family: monospace;
+}
+
+.p-dialog .p-dialog-footer button, .p-dialog .p-dialog-footer button:hover {
+  background-color: white !important;
+  border: black solid 2px !important;
+  color: black;
+  border-radius: 30px !important;
+  font-family: monospace;
+  font-size: 18px !important;
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+  font-weight: 600 !important;
+}
+
+.p-datatable .p-sortable-column {
+  outline-color: black !important;
+}
+
+.p-datatable .p-sortable-column.p-highlight, .p-datatable .p-datatable-thead>tr>th {
+  color: black !important;
+  font-weight: bold !important;
+}
+
+.p-datatable .p-datatable-header {
+  background-color: beige !important;
+}
+
+.p-dropdown .p-dropdown-label.p-placeholder, .p-dropdown.p-dropdown-clearable .p-dropdown-label, .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  font-family: monospace;
+  font-size: 18px !important;
+}
+
+.p-fluid .p-dialog-footer .p-button {
+  width: auto;
+  border: black 2px solid !important;
+  border-radius: 30px !important;
+  font-family: monospace;
+  font-size: 18px !important;
+}
+
+.p-dialog .p-dialog-header {
+  padding: 1.5rem;
+  padding-left: 35% !important;
+  color: goldenrod !important;
+  font-family: monospace;
+  font-size: 24px !important;
+  background: black !important;
+}
+
+.myButton {
+  background-color: goldenrod;
+  border-radius: 28px;
+  border: 1px solid #ab9018;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px 15px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ab9018;
+}
+
+.myButton:hover {
+  background-color: rgb(223, 196, 130);
+  color: rgb(218, 158, 7);
+}
+
+.p-inputtext:focus{
+  border: none !important;
+}
+.filter .fa-calendar-alt:before {
+  font-size: 18px !important;
+}

@@ -1,0 +1,239 @@
+<body style="background-color: beige;">
+  <div *ngIf="IsManager">
+    <div style="background-color: black;color: goldenrod;">
+      <span style="font-family: monospace;">{{myDate | date:'HH:mm'}} <br> {{date | date: 'dd/MM/yyyy'}} </span>
+      <b
+        style="font-size: 20px;text-align: center; font-size: 20px; position: absolute;left: 50%;transform: translateX(-50%);">{{dateTimeWord|
+        addGoodTime}},{{employeeName | titlecase }}</b>
+      <a (click)="exit()" [routerLink]="['/']"
+        style="font-size: 18px; font-family: monospace; color: goldenrod;display: flexbox;position: absolute;display: inline-block;transform: translateX(-1%); right: 2.7%;">Exit</a>
+      <i class="pi pi-sign-out"
+        style="font-size: 1.1rem; display: flexbox;margin-top: 0.2%; position: absolute; display: inline-block;transform: translateX(-1%);right: 1.4%;"></i>
+      <br><br>
+    </div>
+    <a mdbBtn class="animated fadeInLeft"
+      style="position: absolute;left: 28%;transform: translateX(-29%);top:30%;background-color: rgb(251, 223, 94); padding: 2%; text-align: center;font-family: monospace;font-size: 18px;color: black;"
+      (click)="onlineRouter()">
+      <i style="padding: 0.5rem;" class="fas fa-map-marked-alt"></i> online-map
+    </a>
+    <button type="button" mdbBtn
+      style="position: absolute;left: 52%;transform: translateX(-50%);top:30%;background-color: rgb(251, 223, 94); padding: 2%;text-align: center;font-family: monospace;font-size: 18px;color: black;"
+      rounded="true" data-toggle="modal" data-target="#basicExample" (click)="ngOnInit();frame.show()" mdbWavesEffect>
+      <mdb-icon style="padding: 0.5rem;" fas icon="user-plus"></mdb-icon>Add new employee
+    </button>
+    <a mdbBtn class="animated fadeInRight"
+      style="position: absolute;right: 25%;transform: translateX(-30%);top:30%;background-color: rgb(251, 223, 94);padding: 2%;text-align: center;font-family: monospace;font-size: 18px;color: black;"
+      (click)="kitchenRouter()">
+      <mdb-icon class="manager" style="padding: 0.5rem;" fas icon="utensils"></mdb-icon>kitchen
+    </a>
+    <br><br>
+    <button type="button" mdbBtn class="animated fadeInRight" (click)="workingHoursRouter()"
+      style="position: absolute;right: 34%;transform: translateX(-36%);top:50%;background-color: rgb(251, 223, 94);padding: 2%;text-align: center;font-family: monospace;font-size: 18px;color: black;"
+      rounded="true" data-toggle="modal" data-target="#basicExample">
+      <mdb-icon style="padding: 0.5rem;" fas icon="clock"></mdb-icon>Employee hours
+    </button>
+    <button type="button" mdbBtn class="animated fadeInLeft"
+      style="position: absolute;left: 15%;transform: translateX(-60%);top:50%;background-color: rgb(251, 223, 94); padding: 2%;text-align: center;font-family: monospace;font-size: 18px;color: black;"
+      rounded="true" data-toggle="modal" data-target="#basicExample" (click)="DeleteEmployeeRouter()" mdbWavesEffect>
+      <i style="padding: 0.5rem;" class="fas fa-user-times"></i> Delete Employee
+    </button>
+
+    <a mdbBtn class="animated fadeInLeft"
+      style="position: absolute;right: 52%;transform: translateX(-36%);top:50%;background-color: rgb(251, 223, 94);padding: 2%;text-align: center;font-family: monospace;font-size: 18px;color: black;"
+      (click)="displayIncome()">
+      <mdb-icon style="padding: 0.5rem;" fas icon="dollar-sign"></mdb-icon>View income
+    </a>
+    <button type="button" mdbBtn class="animated fadeInRight"
+      style="position: absolute;right: 17%;transform: translateX(-15%);top:50%;background-color: rgb(251, 223, 94);  padding: 2%;text-align: center;font-family: monospace;font-size: 18px;color: black;"
+      rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" mdbWavesEffect>
+      <i style="padding: 0.5rem;" class="fas fa-plus"></i> Add new table
+    </button>
+</div>
+    <p style="margin-top: 27%;text-align: center;font-family: monospace;font-size: 18px;color: black;"
+      *ngIf="isDisplayIncome"> Total income: {{income | currency:'ILS':true}}</p>
+    <p style="text-align: center;font-family: monospace;font-size: 18px;color: black;" *ngIf="isDisplayIncome"> Sold
+      meal amount: {{soldMealsAmount}}</p>
+  
+
+  <div *ngIf="IsManager === false" style="text-align: center; padding: 5%;">You Have not login as manager.</div>‏
+</body>
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 3%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add new employee</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide();ngOnInit()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input #name type="text" id="form34" class="form-control" mdbInput [formControl]="contactFormModalName"
+            [appOnlyLetters]="name" mdbTooltip="First name and then last name" placement="bottom"
+            (change)="onFormComplete()">
+          <label for="form34" style="color: black !important;">Full name</label>
+          <mdb-error
+            *ngIf="(contactFormModalName.invalid && (contactFormModalName.dirty || contactFormModalName.touched)) ||contactFormModalName.value==='' && addPressed">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="contactFormModalName.valid && (contactFormModalName.dirty || contactFormModalName.touched)">
+          </mdb-success>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="key" class="prefix grey-text"></mdb-icon>
+          <input id="nisuy" type="number" class="form-control" mdbInput [formControl]="contactFormModalID" #id
+            appOnlyNumbers appNumOfDigits [type]=id [length]=9 (change)="onFormComplete()">
+          <label for="form29" style="color: black !important;">ID number</label>
+          <mdb-error
+            *ngIf="(contactFormModalID.invalid && (contactFormModalID.dirty || contactFormModalID.touched)) || (contactFormModalID.value === '' && addPressed)">
+            Input invalid
+          </mdb-error>
+          <mdb-success *ngIf="contactFormModalID.valid && (contactFormModalID.dirty || contactFormModalID.touched)">
+          </mdb-success>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="file-invoice-dollar" class="prefix grey-text"></mdb-icon>
+          <input type="number" class="form-control" mdbInput mdbValidate [formControl]="contactFormModalBaseSalary"
+            appOnlyNumbers (change)="onFormComplete()">
+          <label for="form32" style="color: black !important;">Base salary</label>
+          <mdb-error
+            *ngIf="(contactFormModalBaseSalary.invalid && (contactFormModalBaseSalary.dirty || contactFormModalBaseSalary.touched) ) ||contactFormModalBaseSalary.value==='' && addPressed">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="contactFormModalBaseSalary.valid && (contactFormModalBaseSalary.dirty || contactFormModalBaseSalary.touched)">
+          </mdb-success>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="dollar-sign" class="prefix grey-text"></mdb-icon>
+          <input type="number" class="form-control" mdbInput mdbValidate [formControl]="contactFormModalSalaryTip"
+            appOnlyNumbers (change)="onFormComplete()">
+          <label for="form8" style="color: black !important;">Salary tip</label>
+          <mdb-error
+            *ngIf="(contactFormModalSalaryTip.invalid && (contactFormModalSalaryTip.dirty || contactFormModalSalaryTip.touched)) ||contactFormModalSalaryTip.value===''&& addPressed">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="contactFormModalSalaryTip.valid && (contactFormModalSalaryTip.dirty || contactFormModalSalaryTip.touched)">
+          </mdb-success>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="award" class="prefix grey-text"></mdb-icon>
+          <select style="margin-left: 8%;margin-top: 2%" [formControl]="contactFormModalRole" mdbValidate
+            (change)="onRoleChange();onFormComplete()">
+            <option>Choose role</option>
+            <option *ngFor="let r of allRoles">{{r.roleName}}</option>
+          </select>
+          <p style="margin-left: 7.7%;  margin-top: 1%;color: red;  font-family: monospace;font-size: 13px;"
+            *ngIf="!selectedRole && (contactFormModalRole.dirty || contactFormModalRole.touched)">please choose role</p>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="calendar-alt" class="prefix grey-text"></mdb-icon>
+          <select style="margin-left: 8%;margin-top: 2.9%" [formControl]="contactFormModalEmployment"
+            (change)="onEmploymentChange();onFormComplete()">
+            <option>Choose employment</option>
+            <option *ngFor="let e of allEmployments">{{e.employmentName}}</option>
+          </select>
+          <p style="margin-left: 7.7%;  margin-top: 1%;  color: red;  font-family: monospace;font-size: 13px;"
+            *ngIf="!selectedEmployment && (contactFormModalEmployment.dirty || contactFormModalEmployment.touched)">
+            please choose employment</p>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button [disabled]="!formComplete" mdbBtn class="btnSubmit" mdbWavesEffect
+          (click)="onAddEmployee();frame.hide()">
+          <mdb-icon fas icon="plus"> Add</mdb-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div mdbModal #frame2="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 3%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Delete employee</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame2.hide();ngOnInit()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form [formGroup]="deleteEmployeeForm" >
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input #name type="text" id="form34" class="form-control" formControlName="contFirstNameAndLastName" mdbInput
+            [appOnlyLetters]="name" mdbTooltip="First name and then last name" placement="bottom"
+            (change)="OnDeleteEmployeeFormComplete()">
+          <label for="form34" style="color: black !important;">Full name</label>
+          <mdb-error
+            *ngIf="deleteEmployeeForm.get('contFirstNameAndLastName').invalid &&  deleteEmployeeForm.get('contFirstNameAndLastName').touched">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="deleteEmployeeForm.get('contFirstNameAndLastName').valid && (deleteEmployeeForm.get('contFirstNameAndLastName').dirty || deleteEmployeeForm.get('contFirstNameAndLastName').touched)">
+          </mdb-success>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="key" class="prefix grey-text"></mdb-icon>
+          <input type="number" [type]=id id="nisuy" #id class="form-control" mdbInput formControlName="contCodeEmployee" 
+           appOnlyNumbers (change)="OnDeleteEmployeeFormComplete()">
+          <label for="form29" style="color: black !important;">Code employee</label>
+          <mdb-error
+            *ngIf="(deleteEmployeeForm.get('contCodeEmployee').invalid && (deleteEmployeeForm.get('contCodeEmployee').dirty || deleteEmployeeForm.get('contCodeEmployee').touched)) ">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="deleteEmployeeForm.get('contCodeEmployee').valid && (deleteEmployeeForm.get('contCodeEmployee').dirty || deleteEmployeeForm.get('contCodeEmployee').touched)">
+          </mdb-success>
+
+          <div class="modal-footer d-flex justify-content-center">
+            <button mdbBtn class="btnSubmit" mdbWavesEffect [disabled]="!deleteEmployeeForm.valid"
+              (click)="DeleteEmployee();frame2.hide()"> Delete employee</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+
+<div mdbModal #frame3="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 3%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add new table</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame3.hide();ngOnInit()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form [formGroup]="AddNewTableForm" >
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="key" class="prefix grey-text"></mdb-icon>
+          <input  minlength="1" maxlength="2" type="number"  id="nisuy"class="form-control" mdbInput formControlName="numberOfSeatsTable" [type]=id #id 
+           appOnlyNumbers (change)="OnAddTableFormComplete()">
+          <label for="form29" style="color: black !important;">Number of seats</label>
+          <mdb-error
+            *ngIf="(AddNewTableForm.get('numberOfSeatsTable').invalid && (AddNewTableForm.get('numberOfSeatsTable').dirty || AddNewTableForm.get('numberOfSeatsTable').touched)) ">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="AddNewTableForm.get('numberOfSeatsTable').valid && (AddNewTableForm.get('numberOfSeatsTable').dirty || AddNewTableForm.get('numberOfSeatsTable').touched)">
+          </mdb-success>
+
+          <div class="modal-footer d-flex justify-content-center">
+            <button mdbBtn class="btnSubmit" mdbWavesEffect [disabled]="!AddNewTableForm.valid"
+              (click)="AddTable();frame3.hide()"> Add new table</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+<p-toast position="bottom-center" key="bc"></p-toast>

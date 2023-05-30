@@ -1,0 +1,88 @@
+
+fieldset {
+  background-color: rgb(115 216 236);
+  max-width: 25%;
+  padding: 5%;
+  margin-left: 40%;
+}
+
+legend {
+  padding: 5px 10px;
+  margin-bottom: 0px;
+  margin-left: 16px;
+}
+
+.p-button.p-button-success, .p-buttonset.p-button-success>.p-button, .p-splitbutton.p-button-success>.p-button {
+  color: #ffffff;
+  background-color: goldenrod;
+  border: none;
+}
+
+.number-input button {
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.number-input button:before, .number-input button:after {
+  display: inline-block;
+  position: absolute;
+  content: '';
+  height: 2px;
+  transform: translate(-50%, -50%);
+}
+
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.number-input input[type=number] {
+  text-align: center;
+}
+
+.md-number-input.number-input {
+  border: 2px solid #ddd;
+  width: 11.8rem;
+}
+
+.md-number-input.number-input button {
+  outline: none;
+  width: 3rem;
+  height: 2rem;
+  padding-top: .8rem;
+}
+
+.md-number-input.number-input button.minus {
+  padding-left: 8px;
+}
+
+.md-number-input.number-input button.plus {
+  padding-left: 2px;
+}
+
+.md-number-input.number-input button:before, .md-number-input.number-input button:after {
+  width: 1rem;
+  background-color: #212121;
+}
+
+.md-number-input.number-input input[type=number] {
+  max-width: 5rem;
+  padding: .5rem;
+  border: solid #ddd;
+  border-width: 0 2px;
+  font-size: 1.5rem;
+  height: 2.3rem;
+  font-weight: bold;
+  outline: none;
+}
+
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance: none) and (stroke-color:transparent) {
+    .number-input.md-number-input.safari_only button:before, .number-input.md-number-input.safari_only button:after {
+      margin-top: -.6rem;
+    }
+  }
+}

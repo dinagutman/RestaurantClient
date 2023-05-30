@@ -1,0 +1,116 @@
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="background-color: black; "><br>
+   <div class="d-flex justify-content-end"  ><br>
+    <a class="myButton"
+    *ngIf="flagPayment === true" [routerLink]="['/payment', orderCode]" routerLinkActive="activeClass"> payment </a> <br>
+      <a class="myButton" style="margin-left: 5px;"
+      [routerLink]="['/online-map']" routerLinkActive="activeClass"> online-map </a></div> 
+  <h5
+    style="position: absolute;left: 50%;transform: translateX(-50%);color: goldenrod;font-weight: inherit;font-size: 24px;font-family: monospace;"
+    class="p-m-0"><b>Manage your order</b></h5>
+  <br><br>   
+  <router-outlet></router-outlet></div>
+<p-toast position="bottom-right"></p-toast>
+<div  class="card">ּ
+  <p-toolbar  styleClass="p-mb-4">
+    <ng-template  pTemplate="left">
+      <button style="font-size: 20px; font-family: monospace; color: black ;background-color: goldenrod;border: none;"
+        pButton pRipple label="New Meal"  icon="pi pi-plus" (click)="openNew()"></button>
+    </ng-template>
+  </p-toolbar>
+  <p-table  #dt [value]="orderMealsList" [rows]="10" [(selection)]="selectedMealFromTable" [rowHover]="true"
+    dataKey="id">
+    <ng-template  pTemplate="header">
+      <tr style="font-family: monospace; font-size: 18px; ">
+        <th pSortableColumn="name">Meal name</th>
+        <th pSortableColumn="amount">Amount</th>
+        <th pSortableColumn="price">Price</th>
+        <th pSortableColumn="delete">Delete option</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-meal>
+      <tr>
+        <td>{{meal.mealName}}</td>
+        <td>
+          <input type="number" #selectedAmount [min]=1 [max]=99 oninput="validity.valid||(value='')" width="30px"
+            (change)="onServingAmountUpdate(selectedAmount.value, meal.mealName)" [(ngModel)]="meal.servingAmount"
+            [ngModelOptions]="{standalone: true}">
+        </td>
+        <td>{{meal.mealPrice*meal.servingAmount | currency:'ILS'}}</td>
+        <td>
+          <button [disabled]="meal.isMealCreated" pButton pRipple icon="pi pi-trash"
+            class="p-button-rounded p-button-warning" (click)="onDeleteMeal(meal)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between" style="font-family: monospace; font-size: 18px;">
+        In total there are {{orderMealsList ? orderMealsList.length : 0 }} meals.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog [(visible)]="mealDialog" [style]="{width: '450px'}" header="Meal Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <br>
+    <div class="p-field">
+      <p-dropdown #selectedCategory [(ngModel)]="selectedCategoryName" [ngModelOptions]="{standalone: true}"
+        (onChange)="onCategoryChange(selectedCategory.value)" [options]="allCategories"
+        placeholder="Select a meal category" optionLabel="mealCategoryName" [showClear]="true"></p-dropdown>
+      <span style="color:red;font-family: monospace;" *ngIf="noCategorySelected === true">Please select A category
+      </span>
+      <br>
+      <p-dropdown #selectedMeal [(ngModel)]="selectedMealName" [ngModelOptions]="{standalone: true}"
+        (onChange)="onMealChange(selectedMeal.value)" [options]="mealListByCategory" placeholder="Select a meal"
+        optionLabel="mealName" [showClear]="true"></p-dropdown>
+      <span style="color:red;font-family: monospace;" *ngIf="noMealSelected === true">Please select A meal</span>
+      <br>
+      <div style="margin-bottom: -4%;">
+        <br>
+        <label
+          style="margin-left: 6%; margin-bottom: -600px; font-size: 20px; font-family: monospace;font-size: 16.9px !important;">Amount:</label>
+        <div class="number-input md-number-input" style="margin-left: 27%;margin-top: -8%;">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"
+            (click)="onMealAmountChange(selectedMeal.value,selectedAmountToOrder.value )"
+            [disabled]="!selectedYet"></button>
+          <input #selectedAmountToOrder [(ngModel)]="amountToOrder" [ngModelOptions]="{standalone: true}"
+            class="quantity" min="1" max="99" [readonly]="true" name="quantity" value="1" placeholder="1" type="number"
+            oninput="validity.valid||(value='')">
+          <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"
+            (click)="onMealAmountChange(selectedMeal.value, selectedAmountToOrder.value)"
+            [disabled]="!selectedYet"></button>
+        </div>
+        <span style="margin-left: 28%; color:red;font-family: monospace;" *ngIf="amountToOrderZero === true">Please
+          enter valid amount </span>
+      </div>
+      <div style="margin-top: 10%;">
+        <label style="font-size: 20px;margin-left: 6%; font-family: monospace; font-size: 16.9px !important;">Total
+          payment: </label>
+        <input style="border: none; margin-left: 3%; font-size:20px; outline: none;" placeholder="Total payment"
+          [readonly]="true" [ngModel]="totalpayment*amountToOrder| currency:'ILS'"
+          (ngModelChange)="totalpayment*selectedAmountToOrder.value=$event" [ngModelOptions]="{standalone: true}">
+      </div>
+      <br><br>
+    </div>
+    <div class="p-formgrid p-grid">
+      <div class="p-field p-col">
+      </div>
+      <div class="p-field p-col"> </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button style="color: black;background-color: white;" pButton pRipple label="Cancel" icon="pi pi-times"
+      class="p-button-text" (click)="hideDialog()"></button>
+    <button style="color: black;background-color: white;" pButton pRipple label="Save" icon="pi pi-check"
+      class="p-button-text" (click)="onSubmitOrder()"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+</body>

@@ -1,0 +1,250 @@
+<body>
+    <div class="carousel-inner">
+      <img id="Logo" src="../../assets/Logo.png" alt="">
+      <mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
+
+        <mdb-carousel-item>
+          <img src="../../assets/IMG_7534.jpg" class="d-block w-100" alt="" class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/IMG_7652.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/IMG_7660.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/DSC_0179.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/__20220124_135212.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/IMG_7496.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+
+        <mdb-carousel-item>
+          <img src="../../assets/baked-salmon-garnished-with-asparagus-tomatoes-with-herbs.jpg" class="d-block w-100"
+            alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/__DSC_0010.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/IMG_7517.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/__DSC_0011.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/chicken.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/in.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/strabery..jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+          <img src="../../assets/IMG_7508.jpg" class="d-block w-100" alt="..." class="Carusel" />
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </mdb-carousel-item>
+        </mdb-carousel>
+    </div>
+ 
+
+</body>
+<div class="bg-img">
+  <div *ngIf="loading" class="loader">
+  </div>
+  <div id="Form">
+    <div id="TopForm" class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Welcome</h4>
+    </div>
+    <form (ngSubmit)="onSubmitForm()" disabled="!loginForm.valid" #loginForm="ngForm">
+      <div class="md-form mb-5" style="margin-left: 20%;">
+        <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+        <input style="width: 250px;color: rgb(0, 0, 0);" #name type="text" class="form-control" mdbInput
+          [(ngModel)]="userNameValue" [ngModelOptions]="{standalone: true}" MinLength="2" required
+          (change)="onlyLetters()" [appOnlyLetters]="name" mdbTooltip="First name and then last name"
+          placement="bottom">
+        <label for="form34" style="color: goldenrod;font-size: large;">Full name</label>
+        <mdb-error *ngIf="(name.invalid && (name.dirty || name.touched)) ||name.value==='' && flag">
+          Input invalid
+        </mdb-error>
+        <mdb-success *ngIf="name.valid && (name.dirty || name.touched)">
+        </mdb-success>
+      </div>
+      <div class="md-form mb-5" style="margin-left: 20%;">
+        <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+        <input style="width: 250px;color: #000;" appOnlyNumbers #password [appOnlyNumbers]="password" type="password"
+          class="form-control" mdbInput id="float-input" [(ngModel)]="passwordValue"
+          [ngModelOptions]="{standalone: true}" maxlength="6" [min]=0 [max]=999 oninput="validity.valid||(value='')"
+          required>
+        <label for="form34" style="color:goldenrod;font-size: large;">Password</label>
+        <mdb-error *ngIf="(password.invalid && (password.dirty || password.touched)) ||password.value==='' && flag">
+          Input invalid
+        </mdb-error><br
+          *ngIf="(password.invalid && (password.dirty || password.touched)) ||password.value==='' && flag">
+        <mdb-success *ngIf="password.valid && (password.dirty || password.touched)">
+        </mdb-success>
+        <br>
+        <a class="forgot" (click)="closeDialog()" style="font-size: large;" [routerLink]="['/forgot-password']"
+          routerLinkActive="activeClass">forgot password ?</a>
+        <br><br>
+        <button type="submit" mdbBtn class="btnSubmit" mdbWavesEffect>Login
+        </button>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!-- <p-carousel [value]="pictures" orientation="vertical" [style]="{'max-width':'270px'}" verticalViewPortHeight="600px"
+    [numVisible]="1" [numScroll]="0.25" [circular]="true" [autoplayInterval]="3000">
+    <ng-template let-product pTemplate="item">
+      <div class="product-item">
+        <div class="product-item-content">
+          <div class="p-mb-3">
+          </div>
+          <div class="view overlay zoom" *ngFor="let p of pictures">
+            <img style="width: 270px;height: 200px;padding: 0.6rem;" [src]="p.imgSrc" class="img-fluid ">
+            <div class="mask flex-center">
+              <p class="white-text">{{p.foodName}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel> -->
+<!-- <footer id="footer"
+    style="background-color: black;font-family: ui-monospace;width: 800px;position: absolute;left: 50%;transform: translateX(-50%);">
+    <p class="animated bounce" style="text-align: center;color: white;font-size: 100px; top: 69%;">Caramel</p>
+    <p style="text-align: center;color:white;font-size: 30px;margin-top: -1%;">Luxury Restaurant</p>
+    <img class="animated flash" src="assets/5stars.PNG" alt="5 stars"
+      style="position: absolute;left: 50%;transform: translateX(-50%);">
+    <br><br>
+    <p style="margin-top: 2%; text-align: center;color:white;font-size: 16px;font-family: system-ui !important;">
+      <label style="text-align: center;color:white;font-size: 20px;">© </label>
+      Characterization,construction and design <br>
+      Dina Gutman | 0556783264d@gmail.com  & Shira Dezimitrovsky | shira7282@gmail.com | 2023</p>
+  </footer>
+ -->
+
+
+<!-- <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+  (click)="frame.show()" mdbWavesEffect>Launch Modal</button>
+<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-danger modal-side modal-top-right" role="document">
+    Content>
+    <div class="modal-content">
+      <Header>
+      <div class="modal-header">
+        <p class="heading">Modal Danger</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <Body>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-3">
+            <p></p>
+            <p class="text-center">
+              <mdb-icon fas icon="shopping-cart" size="4x"></mdb-icon>
+            </p>
+          </div>
+
+          <div class="col-9">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, molestiae provident temporibus
+              sunt earum.</p>
+            <h2>
+              <mdb-badge danger="true">v52gs1</mdb-badge>
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      <Footer>
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="primary" class="waves-effect" mdbWavesEffect>Get it now
+          <mdb-btn far icon="gem" class="ml-1"></mdb-btn>
+        </a>
+        <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()"
+          data-dismiss="modal">No, thanks</a>
+      </div>
+    </div>
+    </.Content-->
+<!-- </div> 
+</div>  -->
+
+
+<!--
+<a href='https://www.freepik.com/photos/food'>Food photo created by azerbaijan_stockers - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by wirestock - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by azerbaijan_stockers - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by timolina - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by timolina - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by timolina - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by Racool_studio - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by timolina - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by timolina - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by jcomp - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by KamranAydinov - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/food'>Food photo created by timolina - www.freepik.com</a>
+
+<a href='https://www.freepik.com/photos/bakery'>Bakery photo created by azerbaijan_stockers - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/party'>Party photo created by KamranAydinov - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/menu'>Menu photo created by Racool_studio - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/restaurant'>Restaurant photo created by timolina - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/mockup'>Mockup photo created by rawpixel.com - www.freepik.com</a>
+
+<a href='https://www.freepik.com/photos/background'>Background photo created by rawpixel.com - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/background'>Background photo created by jcstudio - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/background'>Background photo created by freepik - www.freepik.com</a>
+<a href='https://www.freepik.com/photos/background'>Background photo created by lifeforstock - www.freepik.com</a>
+-->
